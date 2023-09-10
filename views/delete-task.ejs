@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Task</title>
+    <link rel="stylesheet" href="/css/delete-task.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/add-task">Add Task</a></li>
+            <li><a href="/tasks">Task List</a></li>
+        </ul>
+    </nav>
+    <h2>Tasks:</h2>
+    <div class="task-container">
+        <!-- Completed Tasks -->
+        <div class="completed-tasks">
+            <h3>Completed Tasks</h3>
+            <ul>
+                <% tasks.forEach(task => { %>
+                    <% if (task.status === 'completed') { %>
+                        <li>
+                            <span><strong>Task:</strong> <%= task.name %></span>
+                            <span><strong>Task:</strong> <%= task.tasktype %></span>
+                            <span><strong>Task:</strong> <%= task.email %></span>
+                            <form action="/delete-task" method="post">
+                                <!-- Task details here -->
+                                <input type="hidden" name="taskId" value="<%= task._id %>">
+                                <input type="hidden" name="deleteTask" value="true"> <!-- Add a hidden field to indicate task deletion -->
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+
+        <!-- Pending Tasks -->
+        <div class="pending-tasks">
+            <h3>Pending Tasks</h3>
+            <ul>
+                <% tasks.forEach(task => { %>
+                    <% if (task.status === 'pending') { %>
+                        <li>
+                            <span><strong>Task:</strong> <%= task.name %></span>
+                            <span><strong>Task:</strong> <%= task.tasktype %></span>
+                            <span><strong>Task:</strong> <%= task.email %></span>
+                            <form action="/delete-task" method="post">
+                                <!-- Task details here -->
+                                <input type="hidden" name="taskId" value="<%= task._id %>">
+                                <input type="hidden" name="deleteTask" value="true"> <!-- Add a hidden field to indicate task deletion -->
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
