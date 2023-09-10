@@ -1,0 +1,115 @@
+/* CSS for add-task.ejs */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Background color for the entire page */
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Form Styles */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form select,
+form textarea,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #007bff; /* Blue color for the submit button */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* Tasks Container Styles */
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+/* Completed Tasks Styles */
+.completed-tasks {
+    flex-basis: 48%; /* Adjust width as needed */
+    padding: 20px;
+    background-color: #e0ffe0; /* Light green background for completed tasks */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.completed-tasks h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Pending Tasks Styles */
+.pending-tasks {
+    flex-basis: 48%; /* Adjust width as needed */
+    padding: 20px;
+    background-color: #fff; /* White background for pending tasks */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.pending-tasks h3 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Task List Styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    background-color: #ff0000; /* Red color for delete buttons */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #cc0000; /* Darker red color on hover */
+}
+
