@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+    <link rel="stylesheet" href="/css/tasks.css">
+</head>
+<body>
+    <h1>Task List</h1>
+    <ul>
+        <% tasks.forEach(task => { %>
+            <li>
+                <form action="/tasks" method="post">
+                    <strong>Task:</strong> <input type="text" name="tasktype" value="<%= task.tasktype %>" disabled><br>
+                    <strong>Assigned To:</strong> <input type="text" name="name" value="<%= task.name %>" disabled><br>
+                    <strong>Status:</strong>
+                    <select name="status">
+                        <option value="<%= task.status %>"><%= task.status %></option> <!-- Display current status -->
+                        <option value="completed">Completed</option> <!-- Add an option for "completed" -->
+                    </select><br>
+                    <strong>Email:</strong> <input type="email" name="email" value="<%= task.email %>" disabled><br>
+                    <input type="checkbox" name="completed" <% if (task.status === 'completed') { %>checked<% } %>>
+                    <input type="hidden" name="taskId" value="<%= task._id %>">
+                    <button type="submit">Save</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+    <!-- Modify the JavaScript code to handle task status updates and button visibility -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const saveButtons = document.querySelectorAll('.save-button');
+
+        checkboxes.forEach((checkbox) => {
+            const taskId = checkbox.getAttribute('data-task-id');
+            const saveButton = document.querySelector(`.save-button[data-task-id="${taskId}"]`);
+
+            // Initially hide the "Save" button
+            saveButton.style.display = 'none';
+
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    // Show the "Save" button when the checkbox is checked
+                    saveButton.style.display = 'inline-block';
+                } else {
+                    // Hide the "Save" button when the checkbox is unchecked
+                    saveButton.style.display = 'none';
+                }
+            });
+
+            saveButton.addEventListener('click', async () => {
+                const newStatus = 'completed'; // Set the new status here
+
+                // Send an HTTP POST request to update the task status
+                fetch('/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ taskId, status: newStatus }),
+                })
+                    .then((response) => {
+                        if (response.ok) {
+                            // Update the status on the page
+                            const statusSpan = document.querySelector(`#status-${taskId}`);
+                            statusSpan.textContent = newStatus;
+                        } else {
+                            console.error('Error updating task status.');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error updating task status:', error);
+                    });
+            });
+        });
+    });
+</script>
+
+
+   
+</body>
+
+</html>

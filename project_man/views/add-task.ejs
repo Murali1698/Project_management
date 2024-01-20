@@ -1,0 +1,83 @@
+<!-- add-task.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="/css/add-task.css">
+</head>
+<body>
+    <h1>Add Task</h1>
+    <form action="/add-task" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" >
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" >
+        <label for="tasktype">Task:</label>
+        <textarea id="task" name="tasktype" ></textarea>
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+            <option value="pending" selected>Pending</option>
+            <option value="completed">Completed</option>
+        </select>
+
+        <!-- Add Member Section -->
+        <h2>Add Member (optional)</h2>
+        <label for="memberEmail">Member Email:</label>
+        <input type="email" id="memberEmail" name="memberEmail">
+        <label for="memberPassword">Member Password:</label>
+        <input type="password" id="memberPassword" name="memberPassword">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Tasks:</h2>
+    <div class="task-container">
+        <!-- Completed Tasks -->
+        <div class="completed-tasks">
+            <h3>Completed Tasks</h3>
+            <ul>
+                <% tasks.forEach(task => { %>
+                    <% if (task.status === 'completed') { %>
+                        <li>
+                            <span><strong>Task:</strong> <%= task.name %></span>
+                            <span><strong>Task:</strong> <%= task.tasktype %></span>
+                            <span><strong>Task:</strong> <%= task.email %></span>
+                            <form action="/add-task" method="post">
+                                <!-- Task details here -->
+                                <input type="hidden" name="taskId" value="<%= task._id %>">
+                                <input type="hidden" name="deleteTask" value="true"> <!-- Add a hidden field to indicate task deletion -->
+                                <button type="submit">Delete</button>
+                            </form>
+                            
+                        </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+
+        <!-- Pending Tasks -->
+        <div class="pending-tasks">
+            <h3>Pending Tasks</h3>
+            <ul>
+                <% tasks.forEach(task => { %>
+                    <% if (task.status === 'pending') { %>
+                        <li>
+                            <span><strong>Task:</strong> <%= task.name %></span>
+                            <span><strong>Task:</strong> <%= task.tasktype %></span>
+                            <span><strong>Task:</strong> <%= task.email %></span>
+                            <form action="/delete-task" method="post">
+                                <!-- Task details here -->
+                                <input type="hidden" name="taskId" value="<%= task._id %>">
+                                <input type="hidden" name="deleteTask" value="true"> <!-- Add a hidden field to indicate task deletion -->
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+   
+</body>
+</html>

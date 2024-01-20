@@ -1,0 +1,83 @@
+/* tasks.css */
+
+/* Style the header */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Style the list container */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Style each task item */
+li {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    max-width: 300px;
+    text-align: left;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the form within each task item */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style the labels */
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style the input fields */
+form input[type="text"],
+form input[type="email"],
+form select {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style the checkbox */
+form input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Style the "Save" button */
+form button[type="submit"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+/* Style the "Delete" button */
+form button[type="button"] {
+    background-color: #FF6347;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+/* Style the "Save" button when it's hidden */
+form button[type="submit"][style="display: none"] {
+    display: none;
+}
